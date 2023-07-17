@@ -309,7 +309,7 @@ if st.sidebar.button("Prédire"):
         st.subheader("Contributions des variables sur le modèle Scoring ")
         shap.summary_plot(shap_values, selected_client_df)
         
-        # st.pyplot(bbox_inches='tight')
+        st.pyplot(bbox_inches='tight')
         
         # Affichage camembert
         st.write("\n")
