@@ -330,10 +330,7 @@ if st.sidebar.button("Prédire"):
         
         # Affichage du camembert dans Streamlit
         st.pyplot(fig)
-        
-    else:
-        st.write("Erreur lors de la requête à l'API")
-    
+       
 
 st.sidebar.write(
     "<style>.stButton>button { display: block; margin: 0 auto; }</style>",
