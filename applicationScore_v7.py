@@ -240,6 +240,8 @@ def afficher_jauge(coef, pred_0):
 # Bouton pour envoyer la requête à l'API
 if st.sidebar.button("Prédire"):
         # response = requests.post("http://localhost:5000/getScoring", json={'data': input_client_json})
+        
+        st.write(selected_client_df)
 
         predictions = model_s.predict(selected_client_df) 
 
