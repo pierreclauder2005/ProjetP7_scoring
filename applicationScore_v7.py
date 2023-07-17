@@ -245,9 +245,6 @@ if st.sidebar.button("Prédire"):
         
         selected_client_df.rename(columns=lambda x: x.replace(',', '_'), inplace=True)
 
-
-        st.write(selected_client_df)
-
         predictions = model_s.predict(selected_client_df) 
 
         # print(response)
@@ -301,18 +298,18 @@ if st.sidebar.button("Prédire"):
     
      
         # model_s = joblib.load("modelScoring_v2.pkl")
-        st.set_option('deprecation.showPyplotGlobalUse', False)      
+        # st.set_option('deprecation.showPyplotGlobalUse', False)      
         # Calcul des valeurs SHAP
         # explainer = shap.Explainer(model_s)
-        explainer = shap.TreeExplainer(model_s)
-        shap_values = explainer.shap_values(selected_client_df)
+        # explainer = shap.TreeExplainer(model_s)
+        # shap_values = explainer.shap_values(selected_client_df)
         # Affichage du graphique récapitulatif
         # shap.summary_plot(shap_values, selected_client_df, plot_type='bar', max_display=10)
         
-        st.subheader("Contributions des variables sur le modèle Scoring ")
-        shap.summary_plot(shap_values, selected_client_df)
+        # st.subheader("Contributions des variables sur le modèle Scoring ")
+        # shap.summary_plot(shap_values, selected_client_df)
         
-        st.pyplot(bbox_inches='tight')
+        # st.pyplot(bbox_inches='tight')
         
         # Affichage camembert
         st.write("\n")
