@@ -19,6 +19,8 @@ import shap
 # Lecture du fichier résultat de l'étape précédente EDA  (100 premières lignes afin d'économiser la RAM)
 df = pd.read_csv('./credit_conso_vf.csv', nrows=1000)
 
+model_s = joblib.load("modelScoring_v2.pkl")  
+
 # Séparation des features et Target
 X = df.drop('TARGET', axis=1)
 y = df['TARGET']
@@ -237,27 +239,30 @@ def afficher_jauge(coef, pred_0):
 
 # Bouton pour envoyer la requête à l'API
 if st.sidebar.button("Prédire"):
-    response = requests.post("http://localhost:5000/getScoring", json={'data': input_client_json})
-    print(response)
-    print(response.text)
-    if response.status_code == 200 or response.status_code == 201:
-        response_json = response.json()
-        predictions_json = response_json['predictions']
+        # response = requests.post("http://localhost:5000/getScoring", json={'data': input_client_json})
+
+        predictions = model_s.predict(selected_client_df) 
+
+        # print(response)
+        # print(response.text)
+        # if response.status_code == 200 or response.status_code == 201:
+        #    response_json = response.json()
+        #    predictions_json = response_json['predictions']
         # st.write(predictions_json)
-        if predictions_json[0] == 0:
-            client = "<span style='color: white;'>...</span><span style='color: green; font-weight: bold;'>Client Accepté</span>"
+        if predictions == 0:
+                client = "<span style='color: white;'>...</span><span style='color: green; font-weight: bold;'>Client Accepté</span>"
         else:
-            client = "<span style='color: white;'>...</span><span style='color: red;'>Client refusé</span>"
-                
+                client = "<span style='color: white;'>...</span><span style='color: red;'>Client refusé</span>"
+
         st.write("\n")
-        
+
         st.markdown(f"<div style='background-color: lightgray; padding: 10px;'> <span style='font-size: 1.2em;'>  Résultat accord Crédit : </span><b> {client} </b></div>", unsafe_allow_html=True)
         
         # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         # Affichage jauge coeff de probabilité
           
         st.write("\n")
-        model_s = joblib.load("modelScoring_v2.pkl")  
+        # model_s = joblib.load("modelScoring_v2.pkl")  
             
         y_pred_proba = model_s.predict_proba(selected_client_df)
         max_proba = np.max(y_pred_proba)
@@ -268,12 +273,6 @@ if st.sidebar.button("Prédire"):
         
         afficher_jauge(max_proba, y_pred_proba[0][0])
 
-        
-        
-        
-        
-        
-          
         
         # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         
