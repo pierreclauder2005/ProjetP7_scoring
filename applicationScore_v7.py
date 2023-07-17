@@ -304,7 +304,7 @@ if st.sidebar.button("Prédire"):
         explainer = shap.TreeExplainer(model_s)
         shap_values = explainer.shap_values(selected_client_df)
         # Affichage du graphique récapitulatif
-        shap.summary_plot(shap_values, selected_client_df, plot_type='bar', max_display=10)
+        # shap.summary_plot(shap_values, selected_client_df, plot_type='bar', max_display=10)
         
         st.subheader("Contributions des variables sur le modèle Scoring ")
         shap.summary_plot(shap_values, selected_client_df)
