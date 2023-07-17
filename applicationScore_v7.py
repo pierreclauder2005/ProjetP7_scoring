@@ -17,7 +17,7 @@ import shap
 
 
 # Lecture du fichier résultat de l'étape précédente EDA  (100 premières lignes afin d'économiser la RAM)
-df = pd.read_csv('./credit_conso_vf.csv', nrows=1000)
+df = pd.read_csv('./credit_conso_vf2.csv', nrows=1000)
 
 model_s = joblib.load("modelScoring_v2.pkl")  
 
