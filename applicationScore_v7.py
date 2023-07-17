@@ -242,6 +242,9 @@ if st.sidebar.button("Prédire"):
         # response = requests.post("http://localhost:5000/getScoring", json={'data': input_client_json})
         
         selected_client_df.rename(columns=lambda x: x.replace('-', '_'), inplace=True)
+        
+        selected_client_df.rename(columns=lambda x: x.replace(',', '_'), inplace=True)
+
 
         st.write(selected_client_df)
 
