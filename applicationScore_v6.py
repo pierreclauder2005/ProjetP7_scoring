@@ -239,7 +239,10 @@ def afficher_jauge(coef, pred_0):
 
 # Bouton pour envoyer la requête à l'API
 if st.sidebar.button("Prédire"):
-    response = requests.post("http://localhost:5000/getScoring", json={'data': input_client_json})
+    
+    
+    
+    response = requests.post("https://projetp7vfinal.herokuapp.com/getScoring", json={'data': input_client_json})
     print(response)
     print(response.text)
     if response.status_code == 200 or response.status_code == 201:
