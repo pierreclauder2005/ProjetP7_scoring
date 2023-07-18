@@ -8,6 +8,8 @@ import pandas as pd
 
 app = Flask(__name__)
 
+port = int(os.environ.get("PORT", 5000)) # ajout pour Heroku
+
 model = joblib.load("modelScoring_v2.pkl")
 
 if model is not None:
@@ -29,7 +31,10 @@ def getScoring():
     df = pd.DataFrame(data)
     predictions = model.predict(df)
     return json.dumps({'predictions': predictions.tolist()})
- 
+     
+# if __name__ == '__main__':
+#    app.run(debug=True)
     
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=port)
+    

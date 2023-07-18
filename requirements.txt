@@ -1,5 +1,5 @@
 Flask>=1.1.2
-gunicorn==19.9.0
+gunicorn
 joblib>=1.1.0
 matplotlib==3.5.2
 pandas==2.0.2
@@ -9,4 +9,6 @@ seaborn==0.11.2
 shap==0.41.0
 streamlit==1.24.0
 numpy==1.23.2
+
+
 
