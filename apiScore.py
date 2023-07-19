@@ -20,6 +20,15 @@ else:
     print("Erreur lors du chargement du modèle.")
 
 
+@app.route('/_stcore/allowed-message-origins')
+def allowed_message_origins():
+    return ''
+
+@app.route('/_stcore/health')
+def health():
+    return ''
+  
+    
 @app.route('/getScoring', methods=['POST'])
 def getScoring():
     
