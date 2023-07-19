@@ -1,4 +1,5 @@
-web: sh setup.sh && python run_app.py
+web: gunicorn apiScore:app
+
 
 
 

@@ -239,7 +239,7 @@ if st.sidebar.button("Prédire"):
         fig, ax = plt.subplots(figsize=(5, 3))
         # Ajout d'un titre
         ax.set_title('Répartition Clients acceptés&refusés suivant le filtre choisi :')
-        ax.text(0.5, 1, 'Filtre - Sex: {}, Age: {}, Propriétaire: {}'.format(sex_filter, age_filter, proprietaire_filter),
+        ax.text(0.5, 1, 'Filtre - Sex: {}, Age: {}, Propriétaire: {}  ....'.format(sex_filter, age_filter, proprietaire_filter),
          fontsize=10, horizontalalignment='center', verticalalignment='top', transform=ax.transAxes)
 
         ax.pie(sizes, labels=['', ''], autopct='%1.1f%%', startangle=90)
