@@ -12,8 +12,7 @@ from builtins import abs
 # from sklearn.metrics import roc_curve, auc, RocCurveDisplay
 import shap
 # import time
-
-
+import os
 
 
 # Lecture du fichier résultat de l'étape précédente EDA  (100 premières lignes afin d'économiser la RAM)

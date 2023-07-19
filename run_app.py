@@ -11,4 +11,6 @@ flask_thread = threading.Thread(target=run_flask)
 flask_thread.start()
 
 # Exécuter votre page principale Streamlit
-subprocess.call(["streamlit", "run", "applicationScore_v6.py"])
+subprocess.call(["streamlit", "run", "--server.port", "5000", "applicationScore_v6.py"])
+
+
