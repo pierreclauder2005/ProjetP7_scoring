@@ -49,4 +49,4 @@ def getScoring():
     #return json.dumps({'message': 'API fonctionne correctement'})
      
 if __name__ == '__main__':
-    app.run(port=port)
+    app.run(debug=True)
