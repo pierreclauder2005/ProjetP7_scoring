@@ -34,15 +34,19 @@ def getScoring():
         return json.dumps({'error': 'Erreur lors du chargement du modèle.'})
     
     #print("dans fonction predict !!!!! ")
-    #data_json = request.get_json()['data']
+    data_json = request.get_json()['data']
+    st.write("get_json")
     #print(' Hello !!!! ')
     #print(data_json)
     
-    #data = json.loads(data_json)
-    #df = pd.DataFrame(data)
-    #predictions = model.predict(df)
-    #return json.dumps({'predictions': predictions.tolist()})
-    return json.dumps({'message': 'API fonctionne correctement'})
+    data = json.loads(data_json)
+    st.write("data")
+    df = pd.DataFrame(data)
+    st.write("df")
+    predictions = model.predict(df)
+    st.write("predictions")
+    return json.dumps({'predictions': predictions.tolist()})
+    #return json.dumps({'message': 'API fonctionne correctement'})
      
 if __name__ == '__main__':
     app.run(port=port)
