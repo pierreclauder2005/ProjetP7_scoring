@@ -34,7 +34,11 @@ def getScoring():
         return json.dumps({'error': 'Erreur lors du chargement du modèle.'})
     
     print("dans fonction predict !!!!! ")
-    #data_json = request.get_json()['data']
+    data_json = request.get_json()['data']
+    
+    print('Contenu de data_json : ', data_json)
+    
+    
     #print("get_json")
     print(' Hello !!!! ')
     #print(data_json)
