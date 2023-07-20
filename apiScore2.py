@@ -28,25 +28,26 @@ def getScoring():
     model = joblib.load("modelScoring_v2.pkl")  # déplacer le chargement du modèle ici
     
     if model is not None:
-        #st.write("Le modèle a été chargé avec succès.")
+        print("Le modèle a été chargé avec succès.")
     else:
-        #st.write("Erreur lors du chargement du modèle.")
+        print("Erreur lors du chargement du modèle.")
         return json.dumps({'error': 'Erreur lors du chargement du modèle.'})
     
-    #print("dans fonction predict !!!!! ")
-    data_json = request.get_json()['data']
-    #st.write("get_json")
-    #print(' Hello !!!! ')
+    print("dans fonction predict !!!!! ")
+    #data_json = request.get_json()['data']
+    #print("get_json")
+    print(' Hello !!!! ')
     #print(data_json)
     
-    data = json.loads(data_json)
-    # st.write("data")
-    df = pd.DataFrame(data)
-    # st.write("df")
-    predictions = model.predict(df)
-    # st.write("predictions")
-    return json.dumps({'predictions': predictions.tolist()})
-    #return json.dumps({'message': 'API fonctionne correctement'})
+    #data = json.loads(data_json)
+    # print("data")
+    #df = pd.DataFrame(data)
+    
+    #predictions = model.predict(df)
+    # print("predictions")
+    # return json.dumps({'predictions': predictions.tolist()})
+    return json.dumps({'message': 'API fonctionne correctement'})
      
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=port)
+    #app.run(debug=True)
