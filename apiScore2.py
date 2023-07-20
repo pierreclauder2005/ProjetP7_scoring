@@ -43,9 +43,11 @@ def getScoring():
     print(' Hello !!!! ')
     #print(data_json)
     
-    #data = json.loads(data_json)
+    data = json.loads(data_json)
     # print("data")
-    #df = pd.DataFrame(data)
+    df = pd.DataFrame(data)
+    
+    print(df)
     
     #predictions = model.predict(df)
     # print("predictions")
