@@ -36,10 +36,10 @@ def getScoring():
     print("dans fonction predict !!!!! ")
     data_json = request.get_json()['data']
     
-    print('Contenu de data_json : ', data_json)
+    print('type de data_json : ', type(data_json))
     
     
-    #print("get_json")
+    
     print(' Hello !!!! ')
     #print(data_json)
     
