@@ -49,7 +49,7 @@ def getScoring():
     
     print(df)
     
-    #predictions = model.predict(df)
+    predictions = model.predict(df)
     # print("predictions")
     # return json.dumps({'predictions': predictions.tolist()})
     return json.dumps({'message': 'API fonctionne correctement'})
