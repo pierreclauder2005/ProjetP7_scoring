@@ -237,9 +237,11 @@ def afficher_jauge(coef, pred_0):
 
 
 # Bouton pour envoyer la requête à l'API
-if st.sidebar.button("Prédire"):    
-     
+if st.sidebar.button("Prédire"):  
         
+    selected_client_df.rename(columns=lambda x: x.replace('-', '_'), inplace=True)
+    selected_client_df.rename(columns=lambda x: x.replace(',', '_'), inplace=True)
+             
     response = requests.post("https://projetp7api-002f99ec827f.herokuapp.com/getScoring", json={'data': input_client_json})
     st.write(response)  # affiche la réponse dans l'application Streamlit
     st.write(response.text)  
