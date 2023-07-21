@@ -1,4 +1,4 @@
-web: sh setup.sh && streamlit run applicationScore_v6.py
+web: sh setup.sh && streamlit run applicationScore.py
 
 
 
