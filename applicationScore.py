@@ -245,10 +245,10 @@ if st.sidebar.button("Prédire"):
     st.write(response.text)  
     if response.status_code == 200 or response.status_code == 201:
         response_json = response.json()
-        message = response_json['message']
-        st.write(message)
-        #predictions_json = response_json['predictions']   ICI
-        # st.write(predictions_json)
+        #message = response_json['message']
+        #st.write(message)
+        predictions_json = response_json['predictions'] 
+        st.write(predictions_json)
         if predictions_json[0] == 0:
             client = "<span style='color: white;'>...</span><span style='color: green; font-weight: bold;'>Client Accepté</span>"
         else:
