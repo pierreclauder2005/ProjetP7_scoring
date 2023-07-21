@@ -54,8 +54,8 @@ def getScoring():
 
     predictions = model.predict(df)
     # print("predictions")
-    # return json.dumps({'predictions': predictions.tolist()})
-    return json.dumps({'message': 'API fonctionne correctement'})
+    return json.dumps({'predictions': predictions.tolist()})
+    # return json.dumps({'message': 'API fonctionne correctement'})
      
 if __name__ == '__main__':
     app.run(port=port)
