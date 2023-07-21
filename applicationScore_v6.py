@@ -237,115 +237,17 @@ def afficher_jauge(coef, pred_0):
 
 
 # Bouton pour envoyer la requête à l'API
-if st.sidebar.button("Prédire"):    
+if st.sidebar.button("Prédire"): 
+    st.write("<!doctype html> <html lang=en> <title>500 Internal Server Error</title> <h1>Internal Server Error</h1> <p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>Erreur lors de la requête à l'API")
      
-        
-    response = requests.post("https://projetp7api-002f99ec827f.herokuapp.com/getScoring", json={'data': input_client_json})
-    st.write(response)  # affiche la réponse dans l'application Streamlit
-    st.write(response.text)  
-    if response.status_code == 200 or response.status_code == 201:
-        response_json = response.json()
-        message = response_json['message']
-        st.write(message)
-        #predictions_json = response_json['predictions']   ICI
-        # st.write(predictions_json)
-        if predictions_json[0] == 0:
-            client = "<span style='color: white;'>...</span><span style='color: green; font-weight: bold;'>Client Accepté</span>"
-        else:
-            client = "<span style='color: white;'>...</span><span style='color: red;'>Client refusé</span>"
-                
-        st.write("\n")
-        
-        st.markdown(f"<div style='background-color: lightgray; padding: 10px;'> <span style='font-size: 1.2em;'>  Résultat accord Crédit : </span><b> {client} </b></div>", unsafe_allow_html=True)
-        
-        # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-        # Affichage jauge coeff de probabilité
-          
-        st.write("\n")
-        model_s = joblib.load("modelScoring_v2.pkl")  
-            
-        y_pred_proba = model_s.predict_proba(selected_client_df)
-        max_proba = np.max(y_pred_proba)
-        st.write(y_pred_proba) 
-            
-            
-        st.write("\n")
-        
-        afficher_jauge(max_proba, y_pred_proba[0][0])
-
-        
-        
-        
-        
-        
-          
-        
-        # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-        
-        if sex_filter != "Tous":
-            df=df[df["CODE_GENDER"] == sex_value]
-
-        if age_filter != "Tous":
-            df=df[df["tranche-age-MinMax"] == age_filter]
-            
-        if salaire_filter != "Tous":
-            df=df[df["tranche-salaire-MinMax"] == salaire_filter] 
-
-        if proprietaire_filter != "Tous":
-            df=df[df["FLAG_OWN_REALTY"] == proprietaire_value]
-                
-       
-        st.write("\n")
-
-    
-     
-        # model_s = joblib.load("modelScoring_v2.pkl")
-        st.set_option('deprecation.showPyplotGlobalUse', False)      
-        # Calcul des valeurs SHAP
-        # explainer = shap.Explainer(model_s)
-        explainer = shap.TreeExplainer(model_s)
-        shap_values = explainer.shap_values(selected_client_df)
-        # Affichage du graphique récapitulatif
-        # shap.summary_plot(shap_values, selected_client_df, plot_type='bar', max_display=10)
-        
-        st.subheader("Contributions des variables sur le modèle Scoring ")
-        shap.summary_plot(shap_values, selected_client_df)
-        
-        st.pyplot(bbox_inches='tight')
-        
-        # Affichage camembert
-        st.write("\n")
-        counts = df['TARGET'].value_counts()
-        percentage_1 = counts.get(1, 0) / len(df) * 100
-        percentage_0 = counts.get(0, 0) / len(df) * 100
-        # Création du camembert
-        labels = ['Refusé', 'Accepté']
-        sizes = [percentage_1, percentage_0]
-        fig, ax = plt.subplots(figsize=(5, 3))
-        # Ajout d'un titre
-        ax.set_title('Répartition Clients acceptés&refusés suivant le filtre choisi :')
-        ax.text(0.5, 1, 'Filtre - Sex: {}, Age: {}, Propriétaire: {}  ....'.format(sex_filter, age_filter, proprietaire_filter),
-         fontsize=10, horizontalalignment='center', verticalalignment='top', transform=ax.transAxes)
-
-        ax.pie(sizes, labels=['', ''], autopct='%1.1f%%', startangle=90)
-        
-        ax.legend(labels, loc='center left', bbox_to_anchor=(1, 0.5), fontsize='x-small')
-
-        
-        
-        
-        # Affichage du camembert dans Streamlit
-        st.pyplot(fig)
-        
-    else:
-        st.write("Erreur lors de la requête à l'API")
-    
+ 
 
 st.sidebar.write(
     "<style>.stButton>button { display: block; margin: 0 auto; }</style>",
     unsafe_allow_html=True
 )
   
+
 
 
 
