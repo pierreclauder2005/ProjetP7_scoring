@@ -48,7 +48,10 @@ def getScoring():
     df = pd.DataFrame(data)
     
     print(df)
-    
+        
+    df.rename(columns=lambda x: x.replace('-', '_'), inplace=True)
+    df.rename(columns=lambda x: x.replace(',', '_'), inplace=True)
+
     predictions = model.predict(df)
     # print("predictions")
     # return json.dumps({'predictions': predictions.tolist()})
