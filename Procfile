@@ -1,4 +1,5 @@
-web: gunicorn apiScore2:app
+web: gunicorn apiScore2:app 
+
 
 
 
