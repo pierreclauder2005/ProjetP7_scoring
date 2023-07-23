@@ -28,7 +28,7 @@ def getScoring():
     model = joblib.load("modelScoring_v2.pkl")  # déplacer le chargement du modèle ici
     
     if model is not None:
-        print("Le modèle a été chargé avec succès Yes !! .")
+        print("Le modèle a été chargé avec succès Yes !!  ")
     else:
         print("Erreur lors du chargement du modèle.")
         return json.dumps({'error': 'Erreur lors du chargement du modèle.'})
