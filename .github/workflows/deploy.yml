@@ -14,14 +14,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Heroku CLI
-        uses: akhileshns/heroku-deploy@v3.12.12
+        uses: actions/heroku@v5
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: projetp7api
+          heroku_app_name: "projetp7api"
 
       - name: Deploy to Heroku
-        run: |
-          git remote add heroku https://git.heroku.com/projetp7api.git
-          git push heroku api:main
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: git push heroku HEAD:main
