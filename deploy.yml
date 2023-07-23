@@ -17,7 +17,7 @@ jobs:
         uses: actions/heroku@v5
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: projetp7api
+          heroku_app_name: "projetp7api"
 
       - name: Deploy to Heroku
         run: git push heroku HEAD:main
