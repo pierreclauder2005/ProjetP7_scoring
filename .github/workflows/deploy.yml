@@ -13,6 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies for testing
+        run: pip install -r requirements.txt --no-deps
+
+      - name: Run Pytest
+        run: pytest
+
       - name: Set up Heroku CLI
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
