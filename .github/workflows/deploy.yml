@@ -24,6 +24,9 @@ jobs:
       - name: Install pytest
         run: pip install pytest
 
+      - name: Install werkzeug
+        run: pip install werkzeug
+
       - name: Run Pytest
         run: pytest
 
@@ -35,3 +38,4 @@ jobs:
 
       - name: Deploy to Heroku
         run: git push heroku HEAD:main
+
