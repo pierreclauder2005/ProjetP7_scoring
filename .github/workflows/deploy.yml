@@ -27,7 +27,7 @@ jobs:
           pip install werkzeug --user
 
       - name: Run Pytest
-        run: pytest
+        run: pytest -v
 
       - name: Set up Heroku CLI
         uses: akhileshns/heroku-deploy@v3.12.12
