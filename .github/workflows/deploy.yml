@@ -1,4 +1,4 @@
-name: Deploy to Heroku
+name: Deploy
 
 on:
   push:
@@ -6,35 +6,12 @@ on:
       - api
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v2
+      - uses: CDNievas/heroku-action@v1.0 # This is the action
         with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt --user
-          pip install pytest --user
-          pip install blinker --user
-          pip install click --user
-          pip install werkzeug --user
-
-      - name: Run Pytest
-        run: pytest -v
-
-      - name: Set up Heroku CLI
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_email: "pierreclauder2005@yahoo.fr"
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "projetp7api"
-
-      - name: Deploy to Heroku
-        run: git push heroku +HEAD:main
-
