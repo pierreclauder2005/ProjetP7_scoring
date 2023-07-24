@@ -19,16 +19,12 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt --no-deps
-
-      - name: Install pytest
-        run: pip install pytest
-
-      - name: Install werkzeug
-        run: pip install werkzeug
-
-      - name: Install click
-        run: pip install click
+        run: |
+          pip install -r requirements.txt --user
+          pip install pytest --user
+          pip install blinker --user
+          pip install click --user
+          pip install werkzeug --user
 
       - name: Run Pytest
         run: pytest
@@ -41,3 +37,4 @@ jobs:
 
       - name: Deploy to Heroku
         run: git push heroku HEAD:main
+
