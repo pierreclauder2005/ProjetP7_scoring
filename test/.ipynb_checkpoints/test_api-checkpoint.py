@@ -1,10 +1,10 @@
-# tests/test_api.py
+# test via pytest 
 
 import pytest
 import sys
 import os
 
-# Ajouter le chemin du répertoire parent au chemin de recherche des modules
+# Ajouter chemin du répertoire parent
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Importer le module apiScore2 depuis le répertoire parent
@@ -17,7 +17,8 @@ def test_root():
     assert response.status_code == 200
     assert response.data.decode("utf-8") == "API lancée correctement"
 
-# Vous pouvez ajouter d'autres tests pour les autres routes de votre API si nécessaire
+# ..................
+
 
 if __name__ == '__main__':
     pytest.main()
