@@ -18,7 +18,7 @@ jobs:
           pip install werkzeug --user
 
       - name: Run Pytest
-        run: pytest
+        run: pytest -v
 
   deploy:
     needs: test
