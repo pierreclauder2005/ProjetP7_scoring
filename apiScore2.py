@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 5000))  # ajout pour Heroku
 
+model = joblib.load("modelScoring_v2.pkl")  # Chargement du modèle
 
 @app.route('/')
 def root():
@@ -25,22 +26,18 @@ def health():
 
 @app.route('/getScoring', methods=['POST'])
 def getScoring():
-    model = joblib.load("modelScoring_v2.pkl")  # déplacer le chargement du modèle ici
-    
+        
     if model is not None:
         print("Le modèle a été chargé avec succès Yes !!  ")
     else:
         print("Erreur lors du chargement du modèle.")
         return json.dumps({'error': 'Erreur lors du chargement du modèle.'})
     
-    print("dans fonction predict !!!!! ")
+    
     data_json = request.get_json()['data']
     
     print('type de data_json : ', type(data_json))
-    
-    
-    
-    print(' Hello !!!! ')
+        
     #print(data_json)
     
     data = json.loads(data_json)
