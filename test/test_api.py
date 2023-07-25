@@ -19,6 +19,9 @@ def test_root():
 
 # ..................
 
+# Fonction erreur qui lève une exception erreur => empechera le deploiement de l'API sur Heroku
+def test_erreur():
+    assert 3==4
 
 if __name__ == '__main__':
     pytest.main()
