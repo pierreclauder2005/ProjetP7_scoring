@@ -3,13 +3,13 @@
 import pytest
 import sys
 import os
-import apiScore2
+
 
 # Ajouter chemin du répertoire parent
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Importer le module apiScore2 depuis le répertoire parent
-from apiScore2 import app
+from apiScore2 import app, model as model_charge
 
 
 # Definition des fonctions de test pour execution pytest
@@ -26,7 +26,7 @@ def test_root():
 # Test chargement du modèle   
 def test_chargement_model():
     # Vérifier que le modèle est chargé correctement
-    assert apiScore2.model is not None
+    assert model_charge is not None
     print("Test N°2: Le modèle est chargé correctement !")
 
 
