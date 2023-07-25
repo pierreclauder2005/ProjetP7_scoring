@@ -1,17 +1,35 @@
-name: Deploy
-
 on:
   push:
     branches:
       - api
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.14 # This is the action
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt --user
+          pip install pytest --user
+          pip install blinker --user
+          pip install click --user
+          pip install werkzeug --user
+
+      - name: Run Pytest
+        run: pytest
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.14
         with:
           heroku_email: "pierreclauder2005@yahoo.fr"
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "projetp7api"
+ 
