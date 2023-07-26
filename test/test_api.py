@@ -4,6 +4,7 @@ import pytest
 import sys
 import os
 import pandas as pd
+import json
 
 
 
@@ -38,40 +39,40 @@ def test_prediction_model():
     
     # récupération 1 ligne client (au format du modèle entrainé) à partir d'un fichier test CSV
     test_client = pd.read_csv('premiere_ligne.csv')
-    
-    print("Hello",test_client.shape)
-    
+            
     test_client.rename(columns=lambda x: x.replace('-', '_'), inplace=True)
     test_client.rename(columns=lambda x: x.replace(',', '_'), inplace=True)
-   
-    """
-    
+        
     # Convertir les données en JSON
-    data_json = test_client.to_json(orient='records')
-
+    # data_json = test_client.to_json(orient='records')
+    
+    data_json = json.dumps(test_client.to_dict(orient='records'))
+    
     # Test de la route '/getScoring' en effectuant une requête POST avec notre donnée test: data_json
     response = client.post('/getScoring', json={'data': data_json})
 
     # 1er test sur la réponse ( OK -> code 200)
     assert response.status_code == 200
 
-    # récupération réponse JSON
-    response_json = response.json()
-    assert 'predictions' in response_json
-    predictions_json = response_json['predictions'] 
+    result_data = json.loads(response.data.decode('utf-8'))
+        
+    # Vérification existance de la clef 'predictions'
+    assert 'predictions' in result_data
+        
+    # Récuperation de la prédiction pour notre client test
+    predictions = result_data['predictions']
     
-    # predictions_json[0] == 0  ou predictions_json[0] == 1
-         
-    assert len(predictions_json) == len(test_client)
-    # Ajoutez vos autres assertions ici en fonction des résultats attendus
+    # Vérification du nombre de prédiction. Dans notre cas -> 1 (qui est notre client test)
+    assert len(predictions) == len(test_client)
     
-    """
-
-    print("Test N°3: Prédiction du modèle OK !")
+    # Vérification de la prédiction 0 ou 1
+    assert predictions[0] == 0 or predictions[0] == 1
+            
+    print("Test N°3: Prédiction du modèle et route: /getScoring  OK !")
 
     
 # ..................
-""
+
 # Fonction erreur qui lève une exception erreur => empechera le deploiement de l'API sur Heroku
 #def test_erreur():
 #    assert 3==4
